@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone='no'?>
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+  <name>Maid Cafe API</name>
+  <service>
+    <type>_http._tcp</type>
+    <port>8000</port>
+  </service>
+</service-group>from __future__ import unicode_literals
+
+from django.db import migrations
+
+
+def seed_groups(apps, schema_editor):
+    Group = apps.get_model("auth", "Group")
+    maids = Group(name="Waiters")
+    maids.save()
+    cooks = Group(name="Cooks")
+    cooks.save()
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.RunPython(seed_groups),
+    ]
